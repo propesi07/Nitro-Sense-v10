@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NITRO SENSE X - V10</title>
+    <style>
+        body { background: #050505; color: #fff; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        
+        /* CONTAINER PRINCIPAL */
+        #tela-login, #painel-principal { 
+            width: 320px; padding: 25px; border: 1px solid #ff4500; border-radius: 15px; 
+            background: #000; box-shadow: 0 0 30px #ff4500; text-align: center; 
+        }
+
+        #painel-principal { display: none; }
+        
+        h1 { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 2px #fff; font-weight: bold; text-transform: uppercase; margin: 0 0 15px 0; font-size: 22px; }
+        
+        input { width: 85%; padding: 10px; margin-bottom: 20px; background: #111; border: 1px solid #ff4500; color: #fff; text-align: center; outline: none; }
+        
+        .btn-nitro { background: #ff4500; color: #000; border: none; padding: 12px; font-weight: bold; cursor: pointer; text-transform: uppercase; width: 100%; border-radius: 5px; transition: 0.3s; }
+        .btn-nitro:active { transform: scale(0.95); }
+
+        /* TERMINAL DE LOGS */
+        #log-terminal { 
+            margin-top: 15px; font-size: 8px; color: #00ff00; text-align: left; 
+            height: 180px; overflow-y: auto; background: #020202; border: 1px solid #222; 
+            padding: 10px; border-radius: 5px; line-height: 1.4;
+        }
+        .data-path { color: #ffbc00; }
+    </style>
+</head>
+<body>
+
+    <script id="nitro-ultimate-injector-v10" type="application/json">
+    {
+      "SYSTEM_OVERRIDE_CORE": { "touch_sampling": "1200Hz", "latency": "0ms" },
+      "AIM_LOCK_SUPREME": { "drag": "3.15", "fov": "4.5", "deadzone": "0.0000000001" },
+      "MOVEMENT_NITRO": { "joystick": "0.0", "swipe_friction": "95%" },
+      "INJECTION_PATHS": [
+        "com.dts.freefireth/files/IL2CPP",
+        "com.dts.freefireth/shared_prefs",
+        "/data/system/settings_secure/pointer_speed:10"
+      ],
+      "DISPLAY_DPI": "1440_DPI"
+    }
+    </script>
+
+    <div id="tela-login">
+        <h1>NITRO LOGIN</h1>
+        <input type="text" id="campo-senha" placeholder="SENHA: XITER10">
+        <button class="btn-nitro" onclick="verificar()">ENTRAR</button>
+    </div>
+
+    <div id="painel-principal">
+        <h1>NITRO SENSE</h1>
+        <p style="font-size: 9px; color: #ff4500; margin-top: -10px;">ULTIMATE INJECTOR V10</p>
+        
+        <button id="btn-eject" class="btn-nitro" onclick="ejetarTudo()">EJETAR REGEDIT V10</button>
+        
+        <div id="log-terminal">> AGUARDANDO COMANDO...</div>
+    </div>
+
+    <script>
+        // MENSAGENS QUE VÃO APARECER NO TERMINAL BASEADAS NO SEU CÓDIGO
+        const logsParaExibir = [
+            "> INICIANDO NITRO SENSE X-TREME V10...",
+            "> ACESSANDO [SYSTEM_OVERRIDE_CORE]",
+            "> SET: touch_sampling = 1200Hz_STABLE",
+            "> SET: input_buffer = 0ms_LATENCY",
+            "> ACESSANDO [AIM_LOCK_SUPREME_MODULE]",
+            "> SET: drag_multiplier = 3.15",
+            "> SET: fov_locking = 4.5_DEGREES",
+            "> SET: deadzone = 0.0000000001",
+            "> CARREGANDO [MOVEMENT_NITRO_REFLEX]",
+            "> SET: joystick_deadzone = 0.0",
+            "> CARREGANDO [DISPLAY_SENSE_DPI]",
+            "> SET: virtual_dpi = 1440_DPI",
+            "> INJETANDO EM [INJECTION_PATHS_LIST]...",
+            "<span class='data-path'>> /data/data/com.dts.freefireth/files/IL2CPP</span>",
+            "<span class='data-path'>> /data/system/users/0/settings_secure/pointer_speed:10</span>",
+            "> BYPASS_SECURITY_ELITE: ATIVO",
+            "> STATUS: EJETADO COM SUCESSO!"
+        ];
+
+        function verificar() {
+            if (document.getElementById("campo-senha").value === "XITER10") {
+                document.getElementById("tela-login").style.display = "none";
+                document.getElementById("painel-principal").style.display = "block";
+            } else { alert("SENHA INCORRETA!"); }
+        }
+
+        function ejetarTudo() {
+            let btn = document.getElementById("btn-eject");
+            let log = document.getElementById("log-terminal");
+            btn.disabled = true;
+            btn.innerHTML = "EJETANDO...";
+            log.innerHTML = "";
+
+            let i = 0;
+            function digitar() {
+                if (i < logsParaExibir.length) {
+                    log.innerHTML += logsParaExibir[i] + "<br>";
+                    log.scrollTop = log.scrollHeight;
+                    i++;
+                    setTimeout(digitar, 350);
+                } else {
+                    btn.innerHTML = "NITRO ATIVO!";
+                    btn.style.boxShadow = "0 0 20px #00ff00";
+                    btn.style.color = "#00ff00";
+                }
+            }
+            digitar();
+        }
+    </script>
+</body>
+</html>
